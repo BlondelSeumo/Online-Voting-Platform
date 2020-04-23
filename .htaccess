@@ -1,0 +1,133 @@
+<IfModule mod_headers.c>
+<FilesMatch ".(ttf|otf|woff)$">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !^/(template|uploads/.*)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^not_found?$ index.php?m=not_found [L]
+
+RewriteRule ^/?$ index.php?m=home [L]
+
+RewriteRule ^how?$ index.php?m=how [L]
+RewriteRule ^photos?$ index.php?m=photos [L]
+RewriteRule ^profile?$ index.php?m=profile [L]
+RewriteRule ^login?$ index.php?m=login [L]
+RewriteRule ^register?$ index.php?m=register [L]
+RewriteRule ^forgot?$ index.php?m=forgot [L]
+RewriteRule ^reset/(.*)/(.*)?$ index.php?m=reset&id=$1&code=$2 [L]
+RewriteRule ^nominees/(.*)?$ index.php?m=nominees&id=$1 [L]
+RewriteRule ^manifesto/(.*)?$ index.php?m=manifesto&id=$1 [L]
+RewriteRule ^search?$ index.php?m=search [L]
+
+RewriteRule ^account/dashboard?$ index.php?m=dashboard [L]
+RewriteRule ^account/dashboard/?$ index.php?m=dashboard [L]
+RewriteRule ^account/submit?$ index.php?m=submit [L]
+RewriteRule ^account/submit/?$ index.php?m=submit [L]
+RewriteRule ^account/submitions?$ index.php?m=submitions [L]
+RewriteRule ^account/submitions/?$ index.php?m=submitions [L]
+RewriteRule ^account/payments?$ index.php?m=userpayments [L]
+RewriteRule ^account/payments/?$ index.php?m=userpayments [L]
+RewriteRule ^account/profile?$ index.php?m=editprofile [L]
+RewriteRule ^account/profile/?$ index.php?m=editprofile [L]
+RewriteRule ^account/image?$ index.php?m=image [L]
+RewriteRule ^account/image/?$ index.php?m=image [L]
+RewriteRule ^account/password?$ index.php?m=password [L]
+RewriteRule ^account/password/?$ index.php?m=password [L]
+RewriteRule ^account/how-it-works?$ index.php?m=howitworks [L]
+RewriteRule ^account/how-it-works/?$ index.php?m=howitworks [L]
+RewriteRule ^account/logout?$ index.php?m=logout [L]
+RewriteRule ^account/logout/?$ index.php?m=logout [L]
+
+RewriteRule ^account/payment/(.*)?$ index.php?m=payment&action=$1 [L]
+
+RewriteRule ^account/votes?$ index.php?m=votes [L]
+RewriteRule ^account/votes/?$ index.php?m=votes [L]
+RewriteRule ^account/vote/(.*)?$ index.php?m=vote&id=$1 [L]
+RewriteRule ^account/votes/details/(.*)?$ index.php?m=votesdetails&id=$1 [L]
+RewriteRule ^account/voters/(.*)?$ index.php?m=voters&id=$1 [L]
+
+RewriteRule ^account/website/details/(.*)?$ index.php?m=websitedetails&id=$1 [L]
+RewriteRule ^account/website/image/(.*)?$ index.php?m=websiteimage&id=$1 [L]
+
+RewriteRule ^nominee/dashboard?$ index.php?m=nomineedashboard [L]
+RewriteRule ^nominee/dashboard/?$ index.php?m=nomineedashboard [L]
+RewriteRule ^nominee/profile?$ index.php?m=nomineeeditprofile [L]
+RewriteRule ^nominee/profile/?$ index.php?m=nomineeeditprofile [L]
+RewriteRule ^nominee/image?$ index.php?m=nomineeimage [L]
+RewriteRule ^nominee/image/?$ index.php?m=nomineeimage [L]
+RewriteRule ^nominee/password?$ index.php?m=nomineepassword [L]
+RewriteRule ^nominee/password/?$ index.php?m=nomineepassword [L]
+RewriteRule ^nominee/how-it-works?$ index.php?m=nomineehowitworks [L]
+RewriteRule ^nominee/how-it-works/?$ index.php?m=nomineehowitworks [L]
+RewriteRule ^nominee/logout?$ index.php?m=nomineelogout [L]
+RewriteRule ^nominee/logout/?$ index.php?m=nomineelogout [L]
+
+RewriteRule ^admin/login?$ index.php?m=adminlogin [L]
+RewriteRule ^admin/login/?$ index.php?m=adminlogin [L]
+RewriteRule ^admin/forgot?$ index.php?m=adminforgot [L]
+RewriteRule ^admin/forgot/?$ index.php?m=adminforgot [L]
+RewriteRule ^admin/reset/(.*)/(.*)?$ index.php?m=adminreset&id=$1&code=$2 [L]
+RewriteRule ^admin/dashboard?$ index.php?m=admindashboard [L]
+RewriteRule ^admin/dashboard/?$ index.php?m=admindashbord [L]
+RewriteRule ^admin/logout?$ index.php?m=adminlogout [L]
+RewriteRule ^admin/logout/?$ index.php?m=adminlogout [L]
+
+RewriteRule ^admin/profile?$ index.php?m=adminprofile [L]
+RewriteRule ^admin/profile/?$ index.php?m=adminprofile [L]
+RewriteRule ^admin/profile/image?$ index.php?m=adminimage [L]
+RewriteRule ^admin/profile/image/?$ index.php?m=adminimage [L]
+RewriteRule ^admin/profile/password?$ index.php?m=adminpassword [L]
+RewriteRule ^admin/profile/password/?$ index.php?m=adminpassword [L]
+
+RewriteRule ^admin/addvoter?$ index.php?m=adminaddvoter [L]
+RewriteRule ^admin/addvoter/?$ index.php?m=adminaddvoter [L]
+RewriteRule ^admin/voterlist?$ index.php?m=adminvoterlist [L]
+RewriteRule ^admin/voterlist/?$ index.php?m=adminvoterlist [L]
+RewriteRule ^admin/editvoter/profile/(.*)?$ index.php?m=adminvoterprofile&id=$1 [L]
+RewriteRule ^admin/editvoter/image/(.*)?$ index.php?m=adminvoterimage&id=$1 [L]
+RewriteRule ^admin/editvoter/password/(.*)?$ index.php?m=adminvoterpassword&id=$1 [L]
+
+RewriteRule ^admin/addnominee?$ index.php?m=adminaddnominee [L]
+RewriteRule ^admin/addnominee/?$ index.php?m=adminaddnominee [L]
+RewriteRule ^admin/nomineelist?$ index.php?m=adminnomineelist [L]
+RewriteRule ^admin/nomineelist/?$ index.php?m=adminnomineelist [L]
+RewriteRule ^admin/editnominee/profile/(.*)?$ index.php?m=adminnomineeprofile&id=$1 [L]
+RewriteRule ^admin/editnominee/image/(.*)?$ index.php?m=adminnomineeimage&id=$1 [L]
+RewriteRule ^admin/editnominee/password/(.*)?$ index.php?m=adminnomineepassword&id=$1 [L]
+
+RewriteRule ^admin/addorganization?$ index.php?m=adminaddorganization [L]
+RewriteRule ^admin/addorganization/?$ index.php?m=adminaddorganization [L]
+RewriteRule ^admin/organizationlist?$ index.php?m=adminorganizationlist [L]
+RewriteRule ^admin/organizationlist/?$ index.php?m=adminorganizationlist [L]
+RewriteRule ^admin/editorganization/details/(.*)?$ index.php?m=adminorganizationdetails&id=$1 [L]
+RewriteRule ^admin/editorganization/image/(.*)?$ index.php?m=adminorganizationimage&id=$1 [L]
+
+RewriteRule ^admin/addposition?$ index.php?m=adminaddposition [L]
+RewriteRule ^admin/addposition/?$ index.php?m=adminaddposition [L]
+RewriteRule ^admin/positionlist?$ index.php?m=adminpositionlist [L]
+RewriteRule ^admin/positionlist/?$ index.php?m=adminpositionlist [L]
+RewriteRule ^admin/editposition/(.*)?$ index.php?m=admineditposition&id=$1 [L]
+
+RewriteRule ^admin/addlanguage?$ index.php?m=adminaddlanguage [L]
+RewriteRule ^admin/addlanguage/?$ index.php?m=adminaddlanguage [L]
+RewriteRule ^admin/languagelist?$ index.php?m=adminlanguagelist [L]
+RewriteRule ^admin/languagelist/?$ index.php?m=adminlanguagelist [L]
+RewriteRule ^admin/editlanguage/(.*)?$ index.php?m=admineditlanguage&id=$1 [L]
+
+RewriteRule ^admin/settings/site?$ index.php?m=adminsite [L]
+RewriteRule ^admin/settings/mail?$ index.php?m=mail [L]
+RewriteRule ^admin/settings/bgimage?$ index.php?m=bgimage [L]
+RewriteRule ^admin/settings/language?$ index.php?m=language [L]
+RewriteRule ^admin/settings/analytics?$ index.php?m=analytics [L]
+
+RewriteRule ^install?$ install.php [L]
+</IfModule>
